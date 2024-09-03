@@ -43,7 +43,7 @@ void palindromePermutation(string line)
 	// If there are multiple odd characters, its not a palindrome
     if (oddCount > 1)
 	{
-        cout<<"\""<<line<<"\" is not a palindrome permutation"<<endl;\
+        cout<<"\""<<line<<"\" is not a palindrome permutation"<<endl;
 	}
 
     else
