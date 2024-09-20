@@ -1,4 +1,8 @@
 // Challenge 05: Graph Paths
+// Zebulon Mcknight
+// This program reads in a directed graph from standard input, along with a set
+// of paths to search for within the graph. It prints wether or not a valid path 
+// between two vertices exists. 
 #include <iostream>
 #include <list> 
 #include <vector>  
