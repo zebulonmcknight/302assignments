@@ -1,190 +1,104 @@
 // dijsktras.cpp
-/*void dijkstras(vector <vector<int>> matrix, int rows, int columns, int startx, int starty, int endx, int endy)
-{
-	pair <int, int> current;
-	pair <int, int> end  = make_pair(endx, endy); 
-	vector <pair <int, int>> path; 
-	int totalCost = 0; 
-	
-	current = make_pair(startx, starty); 
-	path.push_back(current);
-	totalCost += matrix[startx][starty]; 
-	
-	priority_queue<int, vector <int>, greater<int>> pq;
-
-	while (current != end)
-	{
-				 						
-	} 
-
-	print(path, totalCost);   
-}  */ 
-
+//
+// Zebulon Mcknight 
+// 10/23/2024
+// This program implements dijkstras algorithm to perform pathfinding on a 
+// game board of various tiles. 
 #include <iostream>
+#include <list> 
 #include <vector>
 #include <queue>
 #include <unordered_map>
 #include <climits>
-#include <algorithm>  // For reverse()
+#include <algorithm>
 
 using namespace std;
 
-void print(vector<pair<int, int>> path, int totalCost)
+// Helper function for format output 
+void print(list<pair<int, int>> path, int totalCost)
 {
     cout << totalCost << endl;
 
-    for (size_t i = 0; i < path.size(); i++)
+    for (auto i:path)
     {
-        cout << path[i].first << " " << path[i].second << endl;
+        cout << i.first << " " << i.second << endl;
     }
 }
 
+// Performs dijkstras algorithm and calls print
 void dijkstras(vector<vector<int>> matrix, int rows, int columns, int startx, int starty, int endx, int endy)
 {
-    vector<pair<int, int>> path;
-    int totalCost = 0;
+	// List storing the coordinates of tiles in the order we visit them 
+	list<pair<int, int>> path; 
 
-    // Priority queue storing pairs (currentCost, (x, y))
-    priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> pq;
+    // Priority queue storing costs and coordinates of possible next tiles (cost, x, y)
+	// Also one of the ugliest lines of code ever written
+    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> pq;
 
-    // 2D vector to store the minimum distance to reach each cell
-    vector<vector<int>> dist(rows, vector<int>(columns, INT_MAX));
+    // 2D vector to store the minimum cost to reach each cell
+    vector<vector<int>> cost(rows, vector<int>(columns, INT_MAX));
 
-    // Direction vectors for moving up, down, left, right
+    // Direction pair for moving up, down, left, right
     vector<pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-
-    // Start by pushing the starting point into the queue with cost 0
-    pq.push(make_pair(0, make_pair(startx, starty)));
-    dist[startx][starty] = 0;
-
+	 
     // Parent vector to reconstruct the path
+	// Another contender for ugliest line of code 
     vector<vector<pair<int, int>>> parent(rows, vector<pair<int, int>>(columns, make_pair(-1, -1)));
+
+	// Start by pushing the starting point into the queue with cost 0
+    pq.push({0, startx, starty});
+    cost[startx][starty] = 0;
 
     while (!pq.empty())
     {
-        // Extract current node and cost
-        pair<int, pair<int, int>> currentPair = pq.top();
+        // Extracting current tiles cost and coordinates 
+        tuple<int, int, int> current = pq.top(); //highest priority (lowest cost) tile 
         pq.pop();
-        int currentCost = currentPair.first;
-        int x = currentPair.second.first;
-        int y = currentPair.second.second;
-
-        // If we reached the end, build the path and exit
+		int currentCost = get<0>(current); 
+        int x = get<1>(current); 
+        int y = get<2>(current); 
+        
+		// If we reached the end, build the path and exit
         if (x == endx && y == endy)
         {
-            totalCost = currentCost;
             pair<int, int> cur = make_pair(endx, endy);
 
             // Rebuild the path by backtracking through the parent array
             while (cur.first != -1 && cur.second != -1)
             {
-                path.push_back(cur);
+                path.push_front(cur);
                 cur = parent[cur.first][cur.second];
             }
 
-            reverse(path.begin(), path.end());
-            print(path, totalCost);
+            print(path, currentCost);
             return;
-        }
+        } 
 
-        // Explore neighbors
+        // Explore neighbors of current tile
         for (size_t i = 0; i < directions.size(); i++)
         {
-            int nx = x + directions[i].first;
-            int ny = y + directions[i].second;
+			// Coordinates of each neighbor
+			int nx = x+directions[i].first; 
+			int ny = y+directions[i].second; 
 
-            // Check if the new position is within bounds
-            if (nx >= 0 && nx < rows && ny >= 0 && ny < columns)
-            {
-                int newCost = currentCost + matrix[x][y]; // Cost of moving from (x, y) to (nx, ny)
+			// If the neighbor is in bounds 
+			if (nx >= 0 && nx < rows && ny >= 0 && ny < columns)
+			{	
+				// Add the cost of the possible next tile
+				int newCost = currentCost + matrix[x][y]; 
 
-                // If a shorter path to (nx, ny) is found
-                if (newCost < dist[nx][ny])
-                {
-                    dist[nx][ny] = newCost;
-                    pq.push(make_pair(newCost, make_pair(nx, ny)));
-                    parent[nx][ny] = make_pair(x, y); // Set the parent to trace the path later
-                }
-            }
-        }
+				// If this is the lowest cost route, take it 
+				if (newCost < cost[nx][ny])
+				{
+					// Updating cost, queue, and parent
+					pq.push({newCost, nx, ny}); 
+					cost[nx][ny] = newCost; 
+					parent[nx][ny] = make_pair(x, y); 
+				} 
+			}
+		} 
     }
 }
-/*
-void dijkstras(vector<vector<int>> matrix, int rows, int columns, int startx, int starty, int endx, int endy)
-{
-    vector<pair<int, int>> path;
-    int totalCost = 0;
-
-    // Priority queue storing pairs (currentCost, (x, y))
-    priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> pq;
-
-    // 2D vector to store the minimum distance to reach each cell
-    vector<vector<int>> dist(rows, vector<int>(columns, INT_MAX));
-
-    // Direction vectors for moving up, down, left, right
-    vector<pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-
-    // Start by pushing the starting point into the queue with cost 0
-    pq.push(make_pair(0, make_pair(startx, starty)));
-    dist[startx][starty] = 0;
-
-    // Parent vector to reconstruct the path
-    vector<vector<pair<int, int>>> parent(rows, vector<pair<int, int>>(columns, make_pair(-1, -1)));
-
-    while (!pq.empty())
-    {
-        // Extract current node and cost
-        pair<int, pair<int, int>> currentPair = pq.top();
-        pq.pop();
-        int currentCost = currentPair.first;
-        int x = currentPair.second.first;
-        int y = currentPair.second.second;
-
-        // If we reached the end, build the path and exit
-        if (x == endx && y == endy)
-        {
-            totalCost = currentCost;
-            pair<int, int> cur = make_pair(endx, endy);
-
-            // Rebuild the path by backtracking through the parent array
-            while (cur.first != -1 && cur.second != -1)
-            {
-                path.push_back(cur);
-                cur = parent[cur.first][cur.second];
-            }
-
-            reverse(path.begin(), path.end());
-            print(path, totalCost);
-            return;
-        }
-
-        // Explore neighbors
-        for (size_t i = 0; i < directions.size(); i++)
-        {
-            int nx = x + directions[i].first;
-            int ny = y + directions[i].second;
-
-            // Check if the new position is within bounds
-            if (nx >= 0 && nx < rows && ny >= 0 && ny < columns)
-            {
-                int newCost = currentCost + matrix[x][y]; // Cost of moving from (x, y) to (nx, ny)
-
-                // If a shorter path to (nx, ny) is found
-                if (newCost < dist[nx][ny])
-                {
-                    dist[nx][ny] = newCost;
-                    pq.push(make_pair(newCost, make_pair(nx, ny)));
-                    parent[nx][ny] = make_pair(x, y); // Set the parent to trace the path later
-                }
-            }
-        }
-    }
-
-    // If we exit the loop without finding the end, print no path
-    cout << "No path found." << endl;
-}
-*/ 
-
 
 // Main Execution
 int main(int argc, char *argv[]) {
@@ -201,9 +115,7 @@ int main(int argc, char *argv[]) {
 		int cost; 
 
 		cin>>name>>cost; 
-		pair <char, int> costPair = make_pair(name, cost); 
-
-		costMap.insert(costPair); 
+		costMap.insert({name, cost}); 
 	} 
 	
 	// Boardsize 
@@ -212,11 +124,13 @@ int main(int argc, char *argv[]) {
 
 	vector<vector <int>> matrix;
 
+	// Initializing size of board 
     matrix.resize(rows);
     for (auto &row : matrix) {
         row.resize(columns);
     }
 
+	// Reading tiles into board
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
@@ -227,31 +141,25 @@ int main(int argc, char *argv[]) {
 		} 
 	} 
 	
+	// Initializing start and end coordinates 
 	int startx, starty, endx, endy; 
 
-	cin>>startx>>starty; 
-	cin>>endx>>endy; 
+	// If else statements allow use with generated input for benchmarking 
+	if (cin>>startx>>starty); 
+	else 
+	{
+		startx = 0, starty = 0; 
+	} 
+	
+	if (cin>>endx>>endy); 
+	else 
+	{	
+		endx = rows - 1, endy = columns - 1; 
+	} 
+
+	// Calling dijkstras!!! 
 	dijkstras(matrix, rows, columns, startx, starty, endx, endy); 
 
-	// CHECKING CORRECT READ IN
-	
-	/*
-	cout<<"tile map: "<<endl; 
-	for (auto it : costMap)
-	{
-		cout<<it.first<<it.second<<endl; 
-	} 
-
-	cout<<"board: "<<endl; 
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < columns; j++)
-		{
-			cout<<matrix[i][j]; 
-		} 
-		cout<<endl; 
-	} 
-	 */ 
     return 0;
 }
 

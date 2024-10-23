@@ -1,0 +1,58 @@
+6
+f 3
+r 5
+g 1
+G 2
+h 4
+m 7
+50 50
+h r h f g G r g G h h r f r G m f G m r r h f m m m f r h G r g g G f h f g f r h h G g h h g g r m
+r r G g f f m f r h r r h G h m r G m r h G h r m f f m g m m r f f G f r r h f G m r r f h h r r G
+G m h m m g m G r r g h f r m g m f G h f f r f m f h h r m m g g g r r h f g G m G g f h r f G m G
+m m r m G h m r g h h f r m g f h h m r m g h r f g f f G m G r G g f f r G f r r h m f r m r f G f
+r G f m g r m G r f f G r G G r g h g g h h h G h f G G f h G r r g h g G r m g r G G r r r f G G G
+G r r r m G m f r m h g h h h f f r r G g r f m g m f g f h m G G h G f g g f r g m G f r g r r r f
+g r r g r r f m g f G m h m h m m h r f m G G f g h f r G f r G r r m g f G g g h G g f g h m g f f
+f G g r G g m h G f g g G G r f f g h f g f r h h h f G h f r h G r m m G g r f f G r r f g m h g r
+h m r f r G g g h f f f g h m m r G m g r m m g h m m G g m m f h h h f g h f f h f h h h h G m r f
+m g G h G r g g G h r g g h h m g f G g m f g G g m m h g h h g r g h g r f h h g G f m m G g r G m
+G f G f h f G r h m f f m m g h r h h G f r f r h h h f m m G r f m m g G g G r m G r m f g G r h r
+h h f G G g r m f f m h r G r f G h f h G f f h m f h g g f r f m f G g g g f G r G m f f h m r g m
+m m m m r g f f g g f g f G g g h g h h G G r f h m h G f f g m m f m m f m G G m G m G m m m G r g
+m m m f m G m h h m g m g f G r m G h g f r G G m g g g G h h g r g g h G m f g g G m m G g h f m G
+g h g G m r f g h r h f h G g h r f g f f h G m G h r f g h G h g m r g m m g r r h r G r h m f g r
+f g f r r r G f r m h g G m f G r G f r h m m m g h r f h G r m G m h g m g g h r r m G f m h m f h
+h h h G r h r G h G h f f f G m g g r m m f h h r g r m r r g G G f f h h m m r g g m r g g f h G m
+r g G G f m m m g h h h r r h m m r h G f m m m f m r h G h r G h h f g r h r h g m f h h G G g g f
+m g G g r r r g m g m h m r f h h g g G h g r h f m m g r r f f G G g h h G m r f g m G G m r r m r
+G G h h f g G m h m r h G g m h r G r h h m f G r r G g r g g h h f g h f G r m f f r h G r g h g r
+f r m f g f m G f f h g h g f h h r g G h g h G h r g f G m f G h m r f m f h m r g f G g f g f m g
+G r g m m r f m m G h G h f g m r m f G G m G G g m r g G m g f f m h G h h G G f m m h f r h m r g
+g g m m m r h h g r G h m g r G m m f g r f f f h f m f m h g r f r h G r f g r r G G h G m f G g f
+G r f G m g G m G f G m m g m G m h G m m g r g m h m m r g m G r G f r m g f f g r h g r G G r r r
+h h r G h f g h m r h g h m G G f r G h r m f m m m f r h m g G G r f f g f h m g f f h m G m h h g
+g h g f G m f g f h r f m G g h G g h m m h m m G h r f g G G m r G G G g G m r g h r m r r G h r g
+G r h g f m m m f m G G h h f f m f G h r G r r G g f h m g f f G G r r g f r g m h m g f G g f h G
+g G r G h g h m f G m m G f g g r g g f m f g g f r h g r g m r G h m f h r G m h g g m g g g r h g
+f r f f h f r g g f g f g m g m G r f f h g f h r f f r f g h f h h f g G f g G f h G g r h m G G m
+G r r g m r g G g g m h g G r r G h r m r m r G f r r m h g m m G h r f G h G f h f g m g G f m m m
+G m g g g g G r g m G m m h r f h m g m m r G m f m G h G f G f m m g m f h h g G r m g G f r m m G
+g h h f h h m m f f G r f G r r g m m r r f f f G g f h r h m h f h g g f m r r f m g h f r m f f g
+m m G h G f f g g r f r G f G m G h m g G m m G G m G r f r G m r h G g g r h h r h h h G r g f G m
+g h h g g m m m h G h f r m h g f r h h G m r r r h G G g h g g G h g m g g g f G f h h h G r h h m
+f m g r r G G g r m f G f G f g f g g g f f r m h G g m r h g m G h r h g h f r g r g g g g g G h m
+G m m g h r m h m h g r h G h G g f m f r r m r r f h h G g r h m h r G m h m h G r f m m g g m g r
+G r r r g f r f h g r G f f r m g r h r G m r r h h G h G G m h h h m m m h G r f h m m G f g G m f
+h r G G g m r f G g G r r f m h G g r f h m G r h h r r r m m G f G r f g g h h m f m h f g g r m G
+r r G g g m f r h r h h m h m f G m f r G m r f G m G h f f m g r g g r f G g h h r f r G m m h m f
+f f G m r m m g G m g g m r G g g G m g m r r h r G r f r h h r m g r f m h f g G g h r r m G G f g
+G h r m g g g G r r g G r r m f m h h m h m m r f f f G r r G h m m r m m r g h G h g h G m g g g f
+m f m g r f g f r r r m h h g m G m m m h f g f g m G h f m h G f r f m m g m r g h h f g h G G G g
+r m g G G h f r g h f h g h h g h G g G g h g f g g h f h f g m m G f G r h g g G g h m r g m m f r
+f f h f r f G G f r G r h r h h h G f h G G f g g r h r h g r G G m G g m f m h m G m G h r m f g f
+h f r g g h g h G h r g r g r m h m G G r G h h h f m g h r f f r r G r G G f m r m r G r r f m h G
+f m h m G G G g G g r r f r g r g h h g r f r f r f r r m m g h h r r m g h m m h r h m f h f g g G
+G r r g g g G G r f r G h G g m G h g g r f r m G r h h g h m m f f r f g g G r G g g m f m m r r m
+r G m G f G h g m f r g G m g G m h m f G g G m g r g m g h h G m r h m g r g m m r r G h G f G m m
+G g f h f f G g m G h r m G g G r m h r h h f f m h r m r r g g r g m r g g g m f f f m g G f G f G
+g g m g f h f g r m G G m h h h h f m f f m h h g f m f r m G r g g G g h r g m f G G f f r g h m r
