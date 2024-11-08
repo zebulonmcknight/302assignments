@@ -7,6 +7,8 @@ all:		solution
 solution:	solution.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
+.PHONY:		test test-output test-memory clean
+
 clean:
 	rm -f solution
 
