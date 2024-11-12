@@ -1,0 +1,8 @@
+I worked on my own so all contributions are my own. 
+
+The theoretical time complexity of Edmonds-Karp is O(E^2 * V), where E is the 
+number of edges in a graph and V is the number of vertices. I believe my program
+achieves this complexity, but I'm not sure if I'm reading in and creating the graphs
+in optimal time complexity, so the time complexity is likely O(E^2 * V) at best, but 
+could be worse. I'm also not using very advanced data structures, much of my data 
+is simply stored in vectors so I have linear search times. 
