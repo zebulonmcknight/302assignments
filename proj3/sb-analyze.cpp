@@ -1,3 +1,11 @@
+/* Zebulon Mcknight
+ * 12/5/24
+ * sb-analyze.cpp
+ * This program takes in a superball board, analyzes it, and prints all scoring sets. 
+ * I referenced ChatGPT specifically for help understanding the disjoint set class
+ * and its usage.
+ */
+
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -79,10 +87,11 @@ Superball::Superball(int argc, char **argv) {
   }
 }
 
+// Function to print all scoring sets 
 void analyze_superball(Superball *s) {
     DisjointSetByRankWPC ds(s->r * s->c);  // Initialize disjoint set
 
-    // Step 1: Perform union on adjacent cells of the same color
+    // Perform union on adjacent cells of the same color
     for (int i = 0; i < s->r; i++) {
         for (int j = 0; j < s->c; j++) {
             int idx = i * s->c + j;
@@ -110,7 +119,7 @@ void analyze_superball(Superball *s) {
         }
     }
 
-    // Step 2: Calculate the size of each connected component
+    // Calculate the size of each connected component
     map<int, int> component_sizes;  // Map to store component sizes
     vector<vector<int>> components(s->r * s->c);  // Store components by root
 
@@ -122,16 +131,17 @@ void analyze_superball(Superball *s) {
         }
     }
 
-    // Step 3: Find valid scoring sets
+    // Find valid scoring sets
     vector<pair<int, pair<int, int>>> scoring_sets;  // Store valid scoring sets
     set<int> processed_roots;  // Set to track roots that have already been printed
 
     // Check for valid scoring sets, considering goal cells
     for (int i = 0; i < s->r; i++) {
-        for (int j = 0; j < s->c; j++) {  // Goal cells are in columns 0, 1, 8, 9 (rows 2-5)
+        for (int j = 0; j < s->c; j++) {  
             int idx = i * s->c + j;
             if (s->goals[idx] && s->board[idx] != '*') {  // If it's a goal cell
                 int root = ds.Find(idx);
+				// If the set is large enough and hasn't been scored yet 
                 if (components[root].size() >= s->mss && processed_roots.find(root) == processed_roots.end()) {
                     // Add this connected component to the scoring sets list
                     scoring_sets.push_back(make_pair(components[root].size(), make_pair(root, s->board[idx])));
@@ -141,12 +151,12 @@ void analyze_superball(Superball *s) {
         }
     }
 
-    // Step 4: Output the valid scoring sets
+    // Output the valid scoring sets
     cout << "Scoring sets:" << endl;
     for (const auto &entry : scoring_sets) {
         int size = entry.first;
         int root = entry.second.first;
-        char color = entry.second.second;  // Get the color directly from the root component
+        char color = entry.second.second;  
         cout << "  Size: " << size << "  Char: " << color << "  Scoring Cell: ";
 
         // Print the coordinates of the goal cell in the component
